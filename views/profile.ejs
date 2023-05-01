@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <title>Plant Health</title>
+    <link rel="icon" href="/public/img/planty.jpeg">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-6">
+          <h3>My Plants</h3>
+          <img src="img/original.gif" alt="">
+          <ul class="plants">
+          <% for(var i=0; i<messages.length; i++) {%>
+            <li class="plant <%=messages[i].water + messages[i].sun === 200 ? 'green' : ''%>">
+              <span><%= messages[i].name%></span>:
+              <span><%= messages[i].water%></span>%
+              <span class="sun"><%= messages[i].sun%></span>%
+              <button class="waterBtn">Water</button>
+              <button class="sunBtn">Sunlight</button>
+              <button><i class="fa fa-trash" aria-hidden="true"></i></button>
+            </li>
+          <% } %>
+          </ul>
+
+          <h2>Get all your plants to 100% health</h2>
+          
+        <% if (user.local.email) { %>
+          <form action="/messages" method="POST">
+            <input type="text" placeholder="Enter Plant"value="<%= user.local.email %>" name="name">
+            <button type="submit">Add</button>
+          </form>
+        </div>
+        <% } %>
+
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html>
